@@ -1,0 +1,134 @@
+﻿@model LeaseVehicle.Models.VMQuote
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Quote Detail</h2>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="~/fonts/fontawesome-free-5.13.0-web/fontawesome-free-5.13.0-web/css/fontawesome.min.css" rel="stylesheet" />
+<link href="~/fonts/fontawesome-free-5.13.0-web/fontawesome-free-5.13.0-web/css/solid.min.css" rel="stylesheet" />
+<link href="~/fonts/fontawesome-free-5.13.0-web/fontawesome-free-5.13.0-web/css/regular.min.css" rel="stylesheet" />
+<div>
+
+    <hr />
+    <div class="row">
+        <div class="card col-lg-6">
+            <img class="card-img-top mt-5" src="@Url.Content(Model.VImage)" alt="Card image" style="width:100%">
+            <div class="card-body">
+                <p class="card-text">Name  : @Model.FName</p>
+                <p class="card-text">Vehicle Name : @Model.VName</p>
+                <p class="card-text">Duration : @Model.Duration</p>
+                <p class="card-text">Downpayment : @Model.DownPayment</p>
+                <p class="card-text">Total Amount : @Model.TotalAmount</p>
+              
+
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <center><h3>Documents</h3></center>
+
+            @if (Model.Documents.Count > 0)
+            {
+                <table class="w3-table-all">
+
+                    <tr class="w3-light-grey">
+                        <td>Sr.No.</td>
+                        <td>DocumentName</td>
+                        <td>View</td>
+                        <td>File</td>
+                    </tr>
+                    @{
+                        var Counter = 1;
+                    }
+
+                    @foreach (var item in Model.Documents)
+                    {
+                        <tr class="w3-white w3-hover-black">
+                            <td>@Counter</td>
+                            <td>@item.DocName</td>
+                            <td>
+                                @if (Convert.ToString(item.DocContentType) == "image/png" || Convert.ToString(item.DocContentType) == "image/jpeg")
+                                {
+                                    @*<img class="" src="@Url.Content(Model.VImage)" alt="Card image" style="width:30%">*@
+                                    <i class="fas fa-image" style="font-size:20px;"></i>
+                                }
+                                @if (Convert.ToString(item.DocContentType) == "msword")
+                                {
+                                    <i class="fas fa-file-word" style="font-size:20px;"></i>
+                                }
+                                @if (Convert.ToString(item.DocContentType) == "application/pdf")
+                                {
+                                    <i class="far fa-file-pdf" style="font-size:20px;"></i>
+                                }
+                            </td>
+                            <td>
+                                @*<i class="fas fa-arrow-circle-down"></i>*@
+                                <a class="fas fa-arrow-circle-down" href="/Vehicle/DownloadDoc/@item.DocId"></a>
+                            </td>
+                        </tr>
+                        Counter++;
+
+                    }
+
+                </table>
+
+            }
+            <br /><br />
+            @using (Html.BeginForm("Edit", "Quotes", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" value="@Model.id" name="QuoteId" id="qid">
+                <input type="hidden" value="@Model.vehicleId" name="VehicleId">
+                <input type="hidden" value="@Model.userId" name="UserId">
+                <input type="hidden" value="@Model.Duration" name="Duration">
+                <input type="hidden" value="@Model.DownPayment" name="DownPayment">
+                <input type="hidden" value="@Model.TotalAmount" name="TotalAmount">
+                <input type="hidden" value="@Model.statusId" name="StatusId" id="StatusId">
+
+                <input type="hidden" value="true" name="IsActive">
+                <input type="hidden" value="false" name="IsDelete">
+                if (Model.Documents.Count > 0 && Model.statusId == 4)
+                {
+                <div>
+                    Document :
+                    <input type="radio" name="doc" id="approve" onclick="IsApprove()">Approve
+                    <input type="radio" name="doc" id="reject" onclick="IsReject()">Reject<br />
+                    <div name="divreject" id="divreject" style="display:none">
+                        Reason for Rejection :
+                        <input type="text" name="Details" id="Details" value="@Model.Details">
+                    </div>
+                    <input type="submit" value="Save" class="btn btn-default"  />
+                </div>
+                    }
+                }
+        </div>
+        <br>
+
+
+    </div>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<script src="~/Content/js/main.js"></script>
+<script src="~/Content/js/jquery-3.3.1.min.js"></script>
+<script src="~/Content/js/popper.min.js"></script>
+<script>
+    function IsReject() {
+
+        var text = document.getElementById("divreject");
+         $("#StatusId").val("6");
+        text.style.display = "block";
+        
+
+    }
+    function IsApprove() {
+        var text = document.getElementById("divreject");
+        $("#StatusId").val("5");
+        text.style.display = "none";
+    }
+    
+</script>

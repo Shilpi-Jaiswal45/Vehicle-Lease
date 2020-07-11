@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Response</title>
+</head>
+<body>
+    @if (ViewBag.success != null)
+    {
+        <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.success");
+            };
+        </script>
+
+    }
+    @if (ViewBag.fail != null)
+    {
+        <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.fail");
+            };
+        </script>
+
+    }
+    <div>
+        <h1>Thank You For..Visiting</h1>
+        <br />
+        @Html.ActionLink("Back to Home", "Index", "Home");
+
+    </div>
+</body>
+</html>

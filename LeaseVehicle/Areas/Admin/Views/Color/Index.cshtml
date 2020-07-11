@@ -1,0 +1,48 @@
+﻿@model IEnumerable<LeaseVehicle.Models.Color>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+</head>
+
+<h2>Colors List</h2>
+
+
+<h4 style="position:absolute;right:0px;margin-top:-40px ;margin-right:90px">
+
+    <i class="fa fa-plus-square" style="color:dodgerblue"></i>
+    @Html.ActionLink("Add Color", "Create", "Color")
+</h4>
+    <table class="table">
+        <tr>
+            <th>No.</th>
+            <th>
+                @Html.DisplayName("Color")
+            </th>
+            <th></th>
+        </tr>
+        @{ var counter = 1;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@counter</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ColorName)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Edit", "Color", new { id = item.ColorId }, htmlAttributes: new { @class = "glyphicon glyphicon-edit" }) |
+                    @Html.ActionLink(" ", "Details", "Color", new { id = item.ColorId }, htmlAttributes: new { @class = "glyphicon glyphicon-list" }) |
+                    @Html.ActionLink(" ", "Delete", "Color", new { id = item.ColorId }, htmlAttributes: new { @class = "glyphicon glyphicon-trash" })
+                </td>
+    
+            </tr>
+            counter++;
+        }
+
+    </table>
+    </html>

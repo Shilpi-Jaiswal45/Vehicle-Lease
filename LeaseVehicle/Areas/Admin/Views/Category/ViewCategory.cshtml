@@ -1,0 +1,68 @@
+﻿@model IEnumerable<LeaseVehicle.Models.Category>
+
+@{
+    ViewBag.Title = "ViewCategory";
+}
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+</head>
+<h2>Category List</h2>
+
+<h4 style="position:absolute;right:0px;margin-top:-40px ;margin-right:250px">
+
+    <i class="fa fa-plus-square" style="color:dodgerblue"></i>
+    @Html.ActionLink("Add Category", "AddCategory", "Category")
+</h4>
+<table class="table">
+    <tr>
+        <th>No.</th>
+        <th>
+            @Html.DisplayName("Category")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        @*<th>
+                @Html.DisplayName("Created Date")
+            </th>*@
+
+
+        <th></th>
+    </tr>
+    @{ var counter = 1; }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@counter</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @if (item.IsActive == true)
+                {
+                    <i class="fa fa-check-circle"></i>
+                }
+                @if (item.IsActive == false)
+                {
+                    <i class="fa fa-times-circle"></i>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+
+
+            <td>
+                @Html.ActionLink(" ", "Edit", "Category", new { id = item.CategoryId }, htmlAttributes: new { @class = "glyphicon glyphicon-edit" }) |
+                @Html.ActionLink(" ", "Details", "Category", new { id = item.CategoryId }, htmlAttributes: new { @class = "glyphicon glyphicon-list" }) |
+                @Html.ActionLink(" ", "Delete", "Category", new { id = item.CategoryId }, htmlAttributes: new { @class = "glyphicon glyphicon-trash" })
+            </td>
+        </tr>
+        counter++;
+    }
+
+</table>
+
+</html>

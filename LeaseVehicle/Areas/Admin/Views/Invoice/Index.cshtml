@@ -1,0 +1,78 @@
+﻿@model IEnumerable<LeaseVehicle.Models.Quote>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            No.
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VehicleDetail.VehicleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DownPayment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </th>
+        
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+
+
+        <th></th>
+    </tr>
+    @{
+        var Counter = 1;
+    }
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>@Counter</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleDetail.VehicleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DownPayment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+             
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.Status1)
+            </td>
+
+            <td>
+                @*@Html.ActionLink(" ", "Edit", "Quotes", new { id = item.QuoteId }, htmlAttributes: new { @class = "glyphicon glyphicon-edit" }) |
+        @Html.ActionLink(" ", "Details", "Quotes", new { id = item.QuoteId }, htmlAttributes: new { @class = "glyphicon glyphicon-list" }) |
+        @Html.ActionLink(" ", "Delete", "Quotes", new { id = item.QuoteId }, htmlAttributes: new { @class = "glyphicon glyphicon-trash" })*@
+                
+                @Html.ActionLink("View Invoice","ViewInvoice","Invoice",new { id = item.QuoteId}, htmlAttributes: new { @class = "btn btn-default" })
+            </td>
+        </tr>
+        Counter++;
+    }
+
+</table>
+

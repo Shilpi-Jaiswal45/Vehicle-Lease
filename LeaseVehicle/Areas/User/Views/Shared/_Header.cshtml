@@ -1,0 +1,38 @@
+﻿
+<header class="site-navbar" role="banner">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-11 col-xl-2">
+                <h1 class="mb-0 site-logo">
+                    <a href="~/User/Home/Index" class="text-white h2 mb-0">
+                        <img src="~/Content/images/l11.png" style="width:200px;height:100px;">
+
+                    </a></h1>
+            </div>
+            <div class="col-12 col-md-10 d-none d-xl-block">
+                <nav class="site-navigation  text-right" role="navigation">
+                    <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+                        <li><a href="~/User/Home"><span style="color:black">Home</span></a></li>
+                        <li><a href="~/User/Home/ListProduct" style="color:black"><span>All Vehicles</span></a></li>
+                        <li><a href="~/User/Home/Contact" style="color:black"><span>Contact</span></a></li>
+                        @if (Session["userid"] != null)
+                        {
+                            <li><a href="~/User/Vehicle/QuoteList" style="color:black"><span>All Quotations</span></a></li>
+                            <li><a href="~/User/UserLogin/Logout" style="color:black"><span>Logout</span></a></li>
+                        }
+                        else
+                        {
+                            <li><a href="~/User/UserLogin/Login" style="color:black"><span>Login</span></a></li>
+                        }
+
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+        </div>
+    </div>
+    </div>
+
+</header>

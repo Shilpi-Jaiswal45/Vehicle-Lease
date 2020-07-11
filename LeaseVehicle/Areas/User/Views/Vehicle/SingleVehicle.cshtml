@@ -1,0 +1,282 @@
+﻿@model LeaseVehicle.Models.VMVehicle
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Lease Vehicle</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="~/Content/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/css/jquery-ui.css">
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/Content/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="~/Content/css/aos.css">
+    <link rel="stylesheet" href="~/Content/css/rangeslider.css">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link href="~/Content/css/CustomStyle.css" rel="stylesheet" />
+    <style>
+        .h-entry .h-entry-inner {
+            padding: 47px 25px !important;
+        }
+    </style>
+</head>
+<body>
+    @if (ViewBag.BookingMessage != null)
+    {
+        @*<script>alert("Not successful");</script>*@
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.BookingMessage");
+            };
+        </script>
+
+    }
+
+    @if (ViewBag.AmountMessage != null)
+    {
+        @*<script>alert(@ViewBag.AmountMessage);</script>*@
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.AmountMessage");
+            };
+        </script>
+    }
+
+
+    <div class="site-wrap">
+        <div class="site-mobile-menu">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+
+
+        @{
+            Html.RenderPartial("_Header");
+        }
+
+
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(../../Content/images/hero_1.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+            <div class="container">
+                <div class="row align-items-center justify-content-center text-center">
+                    <div class="col-md-10" data-aos="fade-up" data-aos-delay="400">
+
+
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 text-center">
+                                <h1>Tips &amp; Articles</h1>
+                                <p data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate beatae quisquam perspiciatis adipisci ipsam quam.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="site-section">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        @using (Html.BeginForm("Quote", "Vehicle", FormMethod.Post))
+                        {
+                            <div class="row mb-3 align-items-stretch">
+
+                                <div class="col-md-6 col-lg-7 mb-4 mb-lg-4">
+                                    <div class="h-entry btn-search">
+                                        <a href="~/SingleVehicle.cshtml"><img src="@Url.Content(Model.VehicleImgName)" alt="Image" class="img-fluid" width="70%" height="50%"></a>
+                                        <div class="h-entry-inner">
+                                            <h2 class="font-size-regular"><a href="blog-single.html">@Model.VehicleName</a></h2>
+                                            <div class="meta mb-4">
+                                                by <a href="blog-single.html">@Model.BrandName</a>
+                                                <span class="mx-2">&bullet;</span> May 5th, 2019
+                                            </div>
+                                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                                            <hr />
+                                            <p> Registration Year : @Model.RegistrationYear</p>
+                                            <p>Kilometers : @Model.Kilometers</p>
+                                            <p>Euronums : @Model.Euronum </p>
+                                            <p>No Of Seats : @Model.NoOfSeats </p>
+                                            <p>Weight : @Model.Weight </p>
+                                            <p>Monthly Rant : <label id="rant">@Model.Price</label></p>
+                                            <input type="hidden" value="@Model.VehicleId" name="VehicleId">
+                                            <input type="hidden" value="@Model.Price" name="Vehicleprice" id="Vehicleprice"/>
+                                            <div style="margin-bottom:2px;">
+                                                @*@Html.ActionLink("Click me", "SingleVehicle", "Vehicle", new { id = item.BrandId })*@
+                                                @*<input type="submit" class="btn text-white btn-primary" value="submit" id="@Model.VehicleId">*@
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="col-md-6 col-lg-5 mb-4 mb-lg-4">
+                                    <div class="calheader">
+                                        Your lease amount
+                                    </div>
+                                    <div id="calAmount">
+                                        <div class="labDuro">
+                                            <label>Duration(In Months)</label>
+                                        </div>
+
+                                        <div class="drop">
+                                            @Html.DropDownList("Duration", new List<SelectListItem>
+                                              {
+                                                 new SelectListItem{ Text="Select Duration", Value = "0" },
+                                                 new SelectListItem{ Text="12", Value = "12" },
+                                                 new SelectListItem{ Text="24", Value = "24" },
+                                                 new SelectListItem{ Text="36", Value = "36" },
+                                              }, new { @class = "form-control" })
+                                        </div>
+                                        <div class="lab">
+                                            <label>Downpayment(In Rs.)</label>
+                                        </div>
+                                        <div class="drop">
+                                            @Html.DropDownList("Downpayment", new List<SelectListItem>
+                                              {
+                                                 new SelectListItem{ Text="Select Downpayment", Value = "0" },
+                                                 new SelectListItem{ Text="1000", Value = "1000" },
+                                                 new SelectListItem{ Text="2000", Value = "2000" },
+                                                 new SelectListItem{ Text="3000", Value = "3000" },
+                                                  new SelectListItem{ Text="4000", Value = "4000" },
+                                                 new SelectListItem{ Text="5000", Value = "5000" },
+                                              }, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="lab">
+                                        <label>Total Payeble Amount : </label>
+                                        <label id="totalamount"></label>
+                                        <input type="hidden" id="totalpayment" name="totalpayment" />
+                                        <label>Remaining Amount After Paying Downpayment : </label>
+                                        <label id="remaining"></label>
+
+                                    </div>
+                                    <div class="drop">
+                                        <label></label>
+
+
+                                    </div>
+                                    <div class="labDuro">
+
+                                        <input type="submit" value="Get this Offer" class="btn btn-primary btn-lg text-white btnsub" style="float:right">
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="py-5 bg-primary">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 mr-auto mb-4 mb-lg-0">
+                        <h2 class="mb-3 mt-0 text-white">Let's get started. Create your account</h2>
+
+
+                    </div>
+                    <div class="col-lg-4">
+                        <p class="mb-0"><a href="signup.html" class="btn btn-outline-white text-white btn-md px-5 font-weight-bold btn-md-block">Sign Up</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @{
+            Html.RenderPartial("_Footer");
+        }
+    </div>
+
+    <script src="~/Content/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/Content/js/jquery-ui.js"></script>
+    <script src="~/Content/js/popper.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <script src="~/Content/js/jquery.stellar.min.js"></script>
+    <script src="~/Content/js/jquery.countdown.min.js"></script>
+    <script src="~/Content/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Content/js/aos.js"></script>
+    <script src="~/Content/js/rangeslider.min.js"></script>
+
+    <script src="~/Content/js/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            var total;
+            var duration
+            $('#Duration').change(function () {
+                var rant = $('#rant').html();
+                duration = $('#Duration').val();
+                total = rant * duration;
+                $('#totalamount').html(total);
+                $('#totalpayment').val(total);
+            });
+
+            $('#Downpayment').change(function () {
+                var dp = $('#Downpayment').val();
+                var rp = total - dp;
+
+                $('#remaining').html(rp);
+
+                $('#remaining').after('<br><label> Per Month : ' + (rp / (duration - 1)).toFixed(2) + '</label>')
+            });
+            //$("#calAmount").change(function () {
+
+            //    var duration = $("#Duration").val();
+            //    var downpayment = $("#Downpayment").val();
+
+            //    var dummy = 0;
+            //    if ((duration == 0 && downpayment == 0) || (duration == 0 || downpayment == 0)) {
+            //        $("#totalamount").html(dummy);
+
+            //    }
+            //    else {
+            //        var duration = $("#Duration").val();
+            //        var downpayment = $("#Downpayment").val();
+            //        var totalpayment = 15000 * duration;
+            //        var deductdownpayment = totalpayment - downpayment;
+            //        var permonth = deductdownpayment / duration;
+            //        var convert = Math.round(permonth);
+            //        $("#totalamount").html(convert);
+
+            //    }
+
+            //});
+            //$("#calculate").click(function () {
+            //    var duration = $("#Duration").val();
+            //    var downpayment = $("#Downpayment").val();
+            //    var totalpayment = 15000 * duration;
+            //    var deductdownpayment = totalpayment - downpayment;
+            //    var permonth = deductdownpayment / duration;
+            //    var convert = Math.round(permonth);
+            //    $("#totalamount").html(convert);
+            //});
+
+
+        });
+    </script>
+</body>
+</html>
+

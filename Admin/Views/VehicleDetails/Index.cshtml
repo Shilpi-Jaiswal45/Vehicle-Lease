@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Admin.Models.VehicleDetail>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+</head>
+
+<h2>List of Vehicles</h2>
+<h4 style="position:absolute;right:0px;margin-top:-40px ;margin-right:200px">
+
+    <i class="fa fa-plus-square" style="color:dodgerblue"></i>
+    @Html.ActionLink("Add Vehicle", "AddVehicle", "VehicleDetails")
+</h4>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Name")
+        </th>
+        <th>
+            @Html.DisplayName("Vehicle Number")
+        </th>
+        <th>
+            @Html.DisplayName("Sold")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        <th>
+            @Html.DisplayName("Created Date")
+        </th>
+        @*<th>
+                @Html.DisplayName("Image")
+            </th>*@
+        <th>
+            @Html.DisplayName("Category")
+        </th>
+        <th>
+            @Html.DisplayName("Brand")
+        </th>
+        <th>
+            @Html.DisplayName("Color")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleNo)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSold)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.VehicleImgId)
+                    <img src="@Url.Content(modelItem.)" height="80"width="80">
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.BrandName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color.ColorName)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Edit", "VehicleDetails", new { id = item.VehicleId }, htmlAttributes: new { @class = "glyphicon glyphicon-edit" }) |
+                @Html.ActionLink(" ", "Details", "VehicleDetails", new { id = item.VehicleId }, htmlAttributes: new { @class = "glyphicon glyphicon-list" }) |
+                @Html.ActionLink(" ", "Delete", "VehicleDetails", new { id = item.VehicleId }, htmlAttributes: new { @class = "glyphicon glyphicon-trash" })
+
+
+
+
+            </td>
+        </tr>
+    }
+
+</table>
+</html>

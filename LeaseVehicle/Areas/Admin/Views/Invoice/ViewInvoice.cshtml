@@ -1,0 +1,146 @@
+﻿@model LeaseVehicle.Models.VMInvoice
+
+@{
+    ViewBag.Title = "ViewInvoice";
+}
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="~/fonts/fontawesome-free-5.13.0-web/fontawesome-free-5.13.0-web/css/fontawesome.min.css" rel="stylesheet" />
+<link href="~/fonts/fontawesome-free-5.13.0-web/fontawesome-free-5.13.0-web/css/solid.min.css" rel="stylesheet" />
+<link href="~/fonts/fontawesome-free-5.13.0-web/fontawesome-free-5.13.0-web/css/regular.min.css" rel="stylesheet" />
+<div>
+
+    <hr />
+    <div class="row">
+            <div class="card col-lg-4">
+                <img class="card-img-top mt-5" src="@Url.Content(Model.VImage)" alt="Card image" style="width:100%">
+
+            </div>
+            <div class="card col-lg-8">
+                <div class="card col-lg-8">
+                    <div class="card-body">
+                        <p class="card-text">Name  : @Model.FName</p>
+                        <p class="card-text">Vehicle Name : @Model.VName</p>
+                        <p class="card-text">Duration : @Model.Duration</p>
+                        <p class="card-text">Downpayment : @Model.DownPayment</p>
+                        <p class="card-text">Total Amount : @Model.TotalAmount</p>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="row">
+            <center><h3>Invoice</h3></center>
+
+            @if (Model.Documents.Count > 0)
+            {
+                <table class="w3-table-all">
+
+                    <tr class="w3-light-grey">
+                        <td>Sr.No.</td>
+                        <td>StartDate</td>
+                        <td>EndDate</td>
+                        <td>Amount</td>
+                        <td>Status</td>
+                    </tr>
+                    @{
+                        var Counter = 1;
+                        var du = Model.Duration;
+                    }
+
+                    @foreach (var item in Model.paymentDetails)
+                    {
+                <tr class="w3-white w3-hover-light-grey">
+                    <td>@Counter</td>
+                    <td>
+
+                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.StartDate))
+                    </td>
+                    <td>
+                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.EndDate))
+                    </td>
+                    <td>@item.Amount</td>
+                    @if (item.StatusId == 11)
+                    {
+                <td class="" style="color:darkcyan">
+                   
+                    @item.Status.Status1
+                </td>
+                    }
+                    else if (item.StatusId == 10)
+                    {
+                        <td>@item.Status.Status1</td>
+                    }
+                    else if (item.StatusId == 9)
+                    {
+                        <td class="text-danger">
+                            @item.Status.Status1 &nbsp;
+                            @Html.ActionLink(" ", "EditpaymentStatus", "Invoice", new { id = item.Id }, htmlAttributes: new { @class = "glyphicon glyphicon-edit" })
+                        </td>
+                    }
+                    @*<td><a href="">@item.Id</a></td>*@
+                </tr>
+
+                        Counter++;
+
+                    }
+                 </table>
+
+            }
+            <br /><br />
+            @using (Html.BeginForm("Edit", "Quotes", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @*<input type="hidden" value="@Model.id" name="QuoteId" id="qid">*@
+                <input type="hidden" value="@Model.vehicleId" name="VehicleId">
+                <input type="hidden" value="@Model.userId" name="UserId">
+                <input type="hidden" value="@Model.Duration" name="Duration">
+                <input type="hidden" value="@Model.DownPayment" name="DownPayment">
+                <input type="hidden" value="@Model.TotalAmount" name="TotalAmount">
+                <input type="hidden" value="@Model.statusId" name="StatusId" id="StatusId">
+
+                <input type="hidden" value="true" name="IsActive">
+                <input type="hidden" value="false" name="IsDelete">
+                if (Model.Documents.Count > 0 && Model.statusId == 4)
+                {
+                    <div>
+                        Document :
+                        <input type="radio" name="doc" id="approve" onclick="IsApprove()">Approve
+                        <input type="radio" name="doc" id="reject" onclick="IsReject()">Reject<br />
+                        <div name="divreject" id="divreject" style="display:none">
+                            Reason for Rejection :
+                            <input type="text" name="Details" id="Details" value="@Model.Details">
+                        </div>
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                }
+            }
+        </div>
+        <br>
+
+    </div>
+  
+
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.id }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<script src="~/Content/js/main.js"></script>
+<script src="~/Content/js/jquery-3.3.1.min.js"></script>
+<script src="~/Content/js/popper.min.js"></script>
+<script>
+    function IsReject() {
+
+        var text = document.getElementById("divreject");
+         $("#StatusId").val("6");
+        text.style.display = "block";
+
+
+    }
+    function IsApprove() {
+        var text = document.getElementById("divreject");
+        $("#StatusId").val("5");
+        text.style.display = "none";
+    }
+
+</script>

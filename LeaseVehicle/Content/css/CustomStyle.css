@@ -1,0 +1,21 @@
+﻿.calheader {
+    background-color: #1ab9b6;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 25px;
+}
+
+.labDuro {
+    margin: 40px 0px 0px 25px;
+}
+.lab {
+    margin: 20px 0px 0px 25px;
+}
+.drop {
+    margin: 10px 0px 0px 25px;
+}
+.btnsub {
+    border-radius:5px;  
+}

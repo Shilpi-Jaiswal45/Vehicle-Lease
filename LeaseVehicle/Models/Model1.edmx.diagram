@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="973fa425cd3945cbab5a733874b1c676" Name="Diagram1">
+        <EntityTypeShape EntityType="VehicleLeasingModel.Brand" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VehicleLeasingModel.Category" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VehicleLeasingModel.Color" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VehicleLeasingModel.Document" Width="1.5" PointX="9.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VehicleLeasingModel.Feedback" Width="1.5" PointX="7.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VehicleLeasingModel.Login" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VehicleLeasingModel.PaymentDetail" Width="1.5" PointX="12.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VehicleLeasingModel.Quote" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VehicleLeasingModel.Status" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VehicleLeasingModel.UserDetail" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VehicleLeasingModel.VehicleDetail" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VehicleLeasingModel.VehicleImage" Width="1.5" PointX="7.5" PointY="10.375" IsExpanded="true" />
+        <AssociationConnector Association="VehicleLeasingModel.fk_Bd" ManuallyRouted="false" />
+        <AssociationConnector Association="VehicleLeasingModel.fk_Cid" ManuallyRouted="false" />
+        <AssociationConnector Association="VehicleLeasingModel.fk_Cat" ManuallyRouted="false" />
+        <AssociationConnector Association="VehicleLeasingModel.fk_Col" ManuallyRouted="false" />
+        <AssociationConnector Association="VehicleLeasingModel.FK_Document_Quote" ManuallyRouted="false" />
+        <AssociationConnector Association="VehicleLeasingModel.FK_PaymentDetails_Quote" ManuallyRouted="false" />
+        <AssociationConnector Association="VehicleLeasingModel.FK_PaymentDetails_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="VehicleLeasingModel.FK_Quote_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="VehicleLeasingModel.FK_Quote_UserDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="VehicleLeasingModel.FK_Quote_VehicleDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="VehicleLeasingModel.FK_VehicleImage_VehicleDetails" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

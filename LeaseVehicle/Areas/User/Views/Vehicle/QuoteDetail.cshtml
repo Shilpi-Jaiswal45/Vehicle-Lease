@@ -1,0 +1,259 @@
+﻿@model LeaseVehicle.Models.VMQuote
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Lease Vehicle</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Content/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/css/jquery-ui.css">
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/Content/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="~/Content/css/aos.css">
+    <link rel="stylesheet" href="~/Content/css/rangeslider.css">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link href="~/fonts/fontawesome-free-5.13.0-web/fontawesome-free-5.13.0-web/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/fonts/fontawesome-free-5.13.0-web/fontawesome-free-5.13.0-web/css/solid.min.css" rel="stylesheet" />
+    <link href="~/fonts/fontawesome-free-5.13.0-web/fontawesome-free-5.13.0-web/css/regular.min.css" rel="stylesheet" />
+    <style>
+        .login-form {
+            margin-top: 5px;
+            background-color: #04b5b1
+        }
+
+        .table-data {
+            font-weight: bold;
+        }
+
+        .table {
+        }
+    </style>
+
+</head>
+<body>
+   
+    <div class="site-wrap">
+        <div class="site-mobile-menu">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+
+        @{
+            Html.RenderPartial("_Header");
+        }
+
+        <div class="site-section">
+            <div class="container">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-md-7 text-center border-primary">
+                        <h2 class="font-weight-light text-primary" style="padding-top:50px">Quote</h2>
+                    </div>
+
+                    <div style="padding:50px" class="row">
+                        <div class="col-7">
+                            <img src="@Url.Content(Model.VImage)" alt="Image" class="img-fluid mt-5" width="100%">
+                        </div>
+                        <div class="col-5">
+                            <table class="table table-striped">
+                                <tr>
+                                    <td class="table-data">Vehicle Name</td>
+                                    <td> @Model.VName</td>
+                                </tr>
+                                <tr>
+                                    <td class="table-data">Vehicle Price</td>
+                                    <td>@Model.Price</td>
+                                </tr>
+                                <tr>
+                                    <td class="table-data">Duration</td>
+                                    <td>  @Model.Duration</td>
+                                </tr>
+                                <tr>
+                                    <td class="table-data">DownPayment</td>
+                                    <td>  @Model.DownPayment</td>
+                                </tr>
+                                <tr>
+                                    <td class="table-data">Total Amount</td>
+                                    <td> @Model.TotalAmount</td>
+                                </tr>
+                                 @if (Model.statusId == 6)
+                                 {
+                                        <tr>
+                                            <td class="table-data">Details</td>
+                                            <td>  @Model.Details</td>
+                                        </tr>
+                                 }
+                                 
+                                <tr>
+                                    <td class="table-data">Status</td>
+                                    <td id="status">@Model.Status</td>
+                                    <input type="hidden" value="@Model.statusId" id="sid">
+                                </tr>
+                                @using (Html.BeginForm("UploadDocument", "Vehicle", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <tr>
+                                        <td colspan="2" class="table-data">
+                                            <input type="file" name="documents" class="doc_upload" multiple="true" />
+                                            <input type="hidden" value="@Model.id" name="QuoteId" id="qid">
+                                            <input type="hidden" value="@Model.vehicleId" name="VehicleId">
+                                            <input type="hidden" value="@Model.userId" name="UserId">
+                                            <input type="hidden" value="@Model.Duration" name="Duration">
+                                            <input type="hidden" value="@Model.DownPayment" name="DownPayment">
+                                            <input type="hidden" value="@Model.TotalAmount" name="TotalAmount">
+                                            <input type="hidden" value="@Model.statusId" name="StatusId">
+                                            <input type="hidden" value="@Model.Details" name="Details">
+                                            <input type="hidden" value="true" name="IsActive">
+                                            <input type="hidden" value="false" name="IsDelete">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="table-data">
+                                            <input type="submit" value="Upload" class="doc_upload">
+                                            @if (Model.statusId == 1)
+
+                                            {<span id="doc_note">You can Upload Document When your request is Accepted...</span>}
+                                            @if (Model.statusId == 4)
+                                            {
+                                                <span id="doc_uploaded">Your document is Uploaded...</span>
+                                            }
+                                            @if (Model.statusId == 5)
+                                            {
+                                                <span id="doc_accepted">Your Document Accepted...</span>
+
+                                            }
+
+                                        </td>
+                                    </tr>
+
+                                    if (Model.statusId == 5)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{ 
+                                                    var db = new LeaseVehicle.Models.VehicleLeasingEntities();
+                                                    var record = db.PaymentDetails.FirstOrDefault(x=> x.QuoteId == Model.id);
+                                                    var pid = record.Id;
+                                                    
+                                                    
+                                                }
+                                                <input type="submit" name="paynow" value="Pay Now" formaction="http://localhost:63105/User/Vehicle/CreatePayment/@pid" class="btn btn-primary btn-lg text-white" style="margin-left:50px;">
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </table>
+                        </div>
+
+
+                        @if (Model.Documents.Count > 0)
+                        {
+
+                            <table class="`table-bordered"style="width:375px;">
+                                <tr style="text-align:center;">
+                                    <td colspan="4">Documents</td>
+                                </tr>
+                                <tr>
+                                    <td>No.</td>
+                                    <td>Document Name</td>
+                                    <td>Action</td>
+                                    <td>View</td>
+                                    <td></td>
+                                </tr>
+                                @{
+                                    var Counter = 1;
+                                }
+
+                                @foreach (var item in Model.Documents)
+                                {
+                                    <tr>
+                                        <td>@Counter</td>
+                                        <td>@item.DocName</td>
+                                       
+                                        @if (Model.statusId == 4)
+                                        {
+                                        <td><a href="/Vehicle/DeleteDocument/@item.DocId">Delete</a>
+                                        </td>
+                                        }
+                                        <td><a href="/Vehicle/DownloadDoc/@item.DocId">Download</a> </td>
+                                    </tr>
+                                    Counter++;
+
+                                }
+                            </table>
+                        }
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+        @{
+            Html.RenderPartial("_Footer");
+        }
+
+    </div>
+
+    <script src="~/Content/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/Content/js/jquery-ui.js"></script>
+    <script src="~/Content/js/popper.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <script src="~/Content/js/jquery.stellar.min.js"></script>
+    <script src="~/Content/js/jquery.countdown.min.js"></script>
+    <script src="~/Content/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Content/js/aos.js"></script>
+    <script src="~/Content/js/rangeslider.min.js"></script>
+
+    <script src="~/Content/js/typed.js"></script>
+
+    <script src="~/Content/js/main.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($("#sid").val() == "1" || $("#sid").val() == "5") {
+
+                //$(".doc_upload").prop('disabled', true);
+                $(".doc_upload").hide();
+                
+            }
+            else {
+                $("#doc_note").hide();
+
+            }
+
+
+
+        });
+
+    </script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>

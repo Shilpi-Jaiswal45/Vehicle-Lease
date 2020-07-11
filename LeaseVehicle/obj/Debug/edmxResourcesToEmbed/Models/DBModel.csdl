@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VehicleLeasingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Brand">
+    <Key>
+      <PropertyRef Name="BrandId" />
+    </Key>
+    <Property Name="BrandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BrandName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryId" Type="Int32" />
+    <NavigationProperty Name="VehicleDetails" Relationship="Self.fk_Bd" FromRole="Brand" ToRole="VehicleDetails" />
+    <NavigationProperty Name="Category" Relationship="Self.fk_Cid" FromRole="Brand" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Brands" Relationship="Self.fk_Cid" FromRole="Category" ToRole="Brand" />
+    <NavigationProperty Name="VehicleDetails" Relationship="Self.fk_Cat" FromRole="Category" ToRole="VehicleDetails" />
+  </EntityType>
+  <EntityType Name="Color">
+    <Key>
+      <PropertyRef Name="ColorId" />
+    </Key>
+    <Property Name="ColorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ColorName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <NavigationProperty Name="VehicleDetails" Relationship="Self.fk_Col" FromRole="Color" ToRole="VehicleDetails" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="DocId" />
+    </Key>
+    <Property Name="DocId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DocData" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="DocContentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="QuoteId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="FeedBackID" />
+    </Key>
+    <Property Name="FeedBackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Message" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="LoginId" />
+    </Key>
+    <Property Name="LoginId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Int32" />
+    <Property Name="IsDelete" Type="Int32" />
+    <Property Name="LoginDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PaymentId" />
+    </Key>
+    <Property Name="PaymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuoteId" Type="Int32" Nullable="false" />
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Quote" Relationship="Self.FK_Payment_Quote" FromRole="Payment" ToRole="Quote" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Payment_Status" FromRole="Payment" ToRole="Status" />
+  </EntityType>
+  <EntityType Name="PaymentDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MobileNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OrderId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TransactionId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <Property Name="PaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="UserDetail" Relationship="Self.FK_PaymentDetails_UserDetails" FromRole="PaymentDetails" ToRole="UserDetails" />
+  </EntityType>
+  <EntityType Name="Quote">
+    <Key>
+      <PropertyRef Name="QuoteId" />
+    </Key>
+    <Property Name="QuoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VehicleId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Duration" Type="Int32" />
+    <Property Name="DownPayment" Type="Int32" />
+    <Property Name="TotalAmount" Type="Int64" />
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK_Payment_Quote" FromRole="Quote" ToRole="Payment" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Quote_Status" FromRole="Quote" ToRole="Status" />
+    <NavigationProperty Name="UserDetail" Relationship="Self.FK_Quote_UserDetails" FromRole="Quote" ToRole="UserDetails" />
+    <NavigationProperty Name="VehicleDetail" Relationship="Self.FK_Quote_VehicleDetails" FromRole="Quote" ToRole="VehicleDetails" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Payment" Relationship="Self.FK_Payment_Status" FromRole="Status" ToRole="Payment" />
+    <NavigationProperty Name="Quotes" Relationship="Self.FK_Quote_Status" FromRole="Status" ToRole="Quote" />
+  </EntityType>
+  <EntityType Name="UserDetail">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Contact" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PaymentDetails" Relationship="Self.FK_PaymentDetails_UserDetails" FromRole="UserDetails" ToRole="PaymentDetails" />
+    <NavigationProperty Name="Quotes" Relationship="Self.FK_Quote_UserDetails" FromRole="UserDetails" ToRole="Quote" />
+  </EntityType>
+  <EntityType Name="VehicleDetail">
+    <Key>
+      <PropertyRef Name="VehicleId" />
+    </Key>
+    <Property Name="VehicleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VehicleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VehicleNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BrandId" Type="Int32" Nullable="false" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="ColorId" Type="Int32" Nullable="false" />
+    <Property Name="Euronum" Type="Int32" Nullable="false" />
+    <Property Name="Kilometers" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RegistrationYear" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Double" Nullable="false" />
+    <Property Name="Weight" Type="Int32" Nullable="false" />
+    <Property Name="NoOfSeats" Type="Int32" Nullable="false" />
+    <Property Name="IsSold" Type="Boolean" Nullable="false" />
+    <Property Name="SoldDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Brand" Relationship="Self.fk_Bd" FromRole="VehicleDetails" ToRole="Brand" />
+    <NavigationProperty Name="Category" Relationship="Self.fk_Cat" FromRole="VehicleDetails" ToRole="Category" />
+    <NavigationProperty Name="Color" Relationship="Self.fk_Col" FromRole="VehicleDetails" ToRole="Color" />
+    <NavigationProperty Name="Quotes" Relationship="Self.FK_Quote_VehicleDetails" FromRole="VehicleDetails" ToRole="Quote" />
+    <NavigationProperty Name="VehicleImages" Relationship="Self.FK_VehicleImage_VehicleDetails" FromRole="VehicleDetails" ToRole="VehicleImage" />
+  </EntityType>
+  <EntityType Name="VehicleImage">
+    <Key>
+      <PropertyRef Name="VehicleImgId" />
+    </Key>
+    <Property Name="VehicleImgId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VehicleImgName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="VehicleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="VehicleDetail" Relationship="Self.FK_VehicleImage_VehicleDetails" FromRole="VehicleImage" ToRole="VehicleDetails" />
+  </EntityType>
+  <Association Name="fk_Bd">
+    <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+    <End Role="VehicleDetails" Type="Self.VehicleDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brand">
+        <PropertyRef Name="BrandId" />
+      </Principal>
+      <Dependent Role="VehicleDetails">
+        <PropertyRef Name="BrandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Cid">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Brand" Type="Self.Brand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Brand">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Cat">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="VehicleDetails" Type="Self.VehicleDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="VehicleDetails">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Col">
+    <End Role="Color" Type="Self.Color" Multiplicity="1" />
+    <End Role="VehicleDetails" Type="Self.VehicleDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Color">
+        <PropertyRef Name="ColorId" />
+      </Principal>
+      <Dependent Role="VehicleDetails">
+        <PropertyRef Name="ColorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Quote">
+    <End Role="Quote" Type="Self.Quote" Multiplicity="1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quote">
+        <PropertyRef Name="QuoteId" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="QuoteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="PaymentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentDetails_UserDetails">
+    <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="1" />
+    <End Role="PaymentDetails" Type="Self.PaymentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="PaymentDetails">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quote_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
+    <End Role="Quote" Type="Self.Quote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Quote">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quote_UserDetails">
+    <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="0..1" />
+    <End Role="Quote" Type="Self.Quote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Quote">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quote_VehicleDetails">
+    <End Role="VehicleDetails" Type="Self.VehicleDetail" Multiplicity="0..1" />
+    <End Role="Quote" Type="Self.Quote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleDetails">
+        <PropertyRef Name="VehicleId" />
+      </Principal>
+      <Dependent Role="Quote">
+        <PropertyRef Name="VehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleImage_VehicleDetails">
+    <End Role="VehicleDetails" Type="Self.VehicleDetail" Multiplicity="1" />
+    <End Role="VehicleImage" Type="Self.VehicleImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleDetails">
+        <PropertyRef Name="VehicleId" />
+      </Principal>
+      <Dependent Role="VehicleImage">
+        <PropertyRef Name="VehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VehicleLeasingEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Brands" EntityType="Self.Brand" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Colors" EntityType="Self.Color" />
+    <EntitySet Name="Documents" EntityType="Self.Document" />
+    <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+    <EntitySet Name="Logins" EntityType="Self.Login" />
+    <EntitySet Name="Payments" EntityType="Self.Payment" />
+    <EntitySet Name="PaymentDetails" EntityType="Self.PaymentDetail" />
+    <EntitySet Name="Quotes" EntityType="Self.Quote" />
+    <EntitySet Name="Status" EntityType="Self.Status" />
+    <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
+    <EntitySet Name="VehicleDetails" EntityType="Self.VehicleDetail" />
+    <EntitySet Name="VehicleImages" EntityType="Self.VehicleImage" />
+    <AssociationSet Name="fk_Bd" Association="Self.fk_Bd">
+      <End Role="Brand" EntitySet="Brands" />
+      <End Role="VehicleDetails" EntitySet="VehicleDetails" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Cid" Association="Self.fk_Cid">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Brand" EntitySet="Brands" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Cat" Association="Self.fk_Cat">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="VehicleDetails" EntitySet="VehicleDetails" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Col" Association="Self.fk_Col">
+      <End Role="Color" EntitySet="Colors" />
+      <End Role="VehicleDetails" EntitySet="VehicleDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Quote" Association="Self.FK_Payment_Quote">
+      <End Role="Quote" EntitySet="Quotes" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Status" Association="Self.FK_Payment_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentDetails_UserDetails" Association="Self.FK_PaymentDetails_UserDetails">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="PaymentDetails" EntitySet="PaymentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quote_Status" Association="Self.FK_Quote_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Quote" EntitySet="Quotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quote_UserDetails" Association="Self.FK_Quote_UserDetails">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="Quote" EntitySet="Quotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quote_VehicleDetails" Association="Self.FK_Quote_VehicleDetails">
+      <End Role="VehicleDetails" EntitySet="VehicleDetails" />
+      <End Role="Quote" EntitySet="Quotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleImage_VehicleDetails" Association="Self.FK_VehicleImage_VehicleDetails">
+      <End Role="VehicleDetails" EntitySet="VehicleDetails" />
+      <End Role="VehicleImage" EntitySet="VehicleImages" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

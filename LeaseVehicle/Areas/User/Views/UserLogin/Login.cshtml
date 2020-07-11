@@ -1,0 +1,138 @@
+﻿@model LeaseVehicle.Models.VMVehicle
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Lease Vehicle</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="../../Content/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="../../Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../Content/css/magnific-popup.css">
+    <link rel="stylesheet" href="../../Content/css/jquery-ui.css">
+    <link rel="stylesheet" href="../../Content/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../Content/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../../Content/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="../../Content/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="../../Content/css/aos.css">
+    <link rel="stylesheet" href="../../Content/css/rangeslider.css">
+    <link rel="stylesheet" href="../../Content/css/style.css">
+    <style>
+        .login-form {
+            margin-top: -150px;
+            background-color: #04b5b1
+        }
+        </style>
+</head>
+<body>
+
+    <div class="site-wrap">
+        <div class="site-mobile-menu">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+
+        @{
+            Html.RenderPartial("_Header");
+        }
+
+        <div class="site-section">
+            <div class="container">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-md-7 text-center border-primary">
+                        <h2 class="font-weight-light text-primary">Login</h2>
+
+                    </div>
+                  
+                    <div class="col-md-6 mb-5" style="margin:100px;padding:80px">
+
+                        @using (Html.BeginForm("Login", "UserLogin", FormMethod.Post, new { @class = "login-form p-5" }))
+                        {
+                            @*<form action="UserLogin/Login" method="post" class="p-5" style="margin-top:-150px;background-color:#04b5b1">*@
+
+
+                            <div class="row form-group">
+
+                                <div class="col-md-12">
+                                    <label class="text-black" for="email" style="font-weight:bold">Email</label>
+                                    <input type="email" id="email2" class="form-control" name="Email">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+
+                                <div class="col-md-12">
+                                    <label class="text-black" style="font-weight:bold" for="pass1">Password</label>
+                                    <input type="password" id="pass3" class="form-control" name="Password">
+                                </div>
+                            </div>
+
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <center><input type="submit" value="Log In" class="btn btn-primary btn-sm text-white"></center>
+                                </div>
+                            </div>
+                            <center>
+                                @*<a href="ForgotPassword" style="color:white">Forgot Password?</a>*@
+                                <br />
+                                <a href="Registration" style="color:white">
+                                    Not Having Account??
+                                    <u>Create Now</u>
+                                </a>
+                            </center>
+                            <center>
+                                @*<a href="ForgotPassword" style="color:white">Forgot Password?</a>*@
+                                <br />
+                                <a href="@Url.Action("ForgotPassword","UserLogin")" style="color:white">
+                                    Forgot Password??
+                                    <u>Click here!</u>
+                                </a>
+                            </center>
+                            
+                    @*</form>*@
+                            }
+                /**/
+                    </div>
+                
+                </div>
+           
+
+
+                @{
+                        Html.RenderPartial("_Footer");
+                }
+            </div>
+        </div>
+    </div>
+
+            <script src="../../Content/js/jquery-3.3.1.min.js"></script>
+            <script src="../../Content/js/jquery-migrate-3.0.1.min.js"></script>
+            <script src="../../Content/js/jquery-ui.js"></script>
+            <script src="../../Content/js/popper.min.js"></script>
+            <script src="../../Content/js/bootstrap.min.js"></script>
+            <script src="../../Content/js/owl.carousel.min.js"></script>
+            <script src="../../Content/js/jquery.stellar.min.js"></script>
+            <script src="../../Content/js/jquery.countdown.min.js"></script>
+            <script src="../../Content/js/jquery.magnific-popup.min.js"></script>
+            <script src="../../Content/js/bootstrap-datepicker.min.js"></script>
+            <script src="../../Content/js/aos.js"></script>
+            <script src="../../Content/js/rangeslider.min.js"></script>
+
+            <script src="../../Content/js/typed.js"></script>
+
+            <script src="../../Content/js/main.js"></script>
+
+</body>
+</html>
+
+
+

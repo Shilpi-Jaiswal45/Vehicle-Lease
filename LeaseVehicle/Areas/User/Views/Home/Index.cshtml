@@ -1,0 +1,394 @@
+﻿@model LeaseVehicle.Models.VMVehicle
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Lease Vehicle</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="../../Content/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="../../Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../Content/css/magnific-popup.css">
+    <link rel="stylesheet" href="../../Content/css/jquery-ui.css">
+    <link rel="stylesheet" href="../../Content/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../Content/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../../Content/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="../../Content/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="../../Content/css/aos.css">
+    <link rel="stylesheet" href="../../Content/css/rangeslider.css">
+    <link rel="stylesheet" href="../../Content/css/style.css">
+
+</head>
+<body>
+
+    <div class="site-wrap">
+        <div class="site-mobile-menu">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+
+        @{
+            Html.RenderPartial("_Header");
+        }
+
+
+
+        <div class="site-blocks-cover overlay" style="background-image: url(../../Content/images/c1.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+            <div class="container">
+                <div class="row align-items-center justify-content-center text-center">
+                    <div class="col-md-10">
+
+
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-md-10 text-center">
+                                <h1 data-aos="fade-up">Find Your <span class="typed-words"></span></h1>
+                                <p data-aos="fade-up" class=" w-75 mx-auto">
+                                    A new car, truck, or van has never been easier. No dealer visit, no down payment,
+                                    and delivered to you.Extensive research and easy vehicle selection help you get the
+                                    best lease.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-search-wrap p-2" data-aos="fade-up" data-aos-delay="200">
+                            @using (Html.BeginForm("ListProductBySearch", "Vehicle", FormMethod.Post))
+                            {
+                                <div class="row align-items-center">
+                                    <div class="col-lg-12 col-xl-4 no-sm-border border-right">
+                                        <input type="text" class="form-control" placeholder="What are you looking for?" name="VehicleName">
+                                    </div>
+
+                                    <div class="col-lg-12 col-xl-3 no-sm-border border-right">
+                                        <div class="select-wrap">
+                                            <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+                                            @Html.DropDownList("CategoryId", new SelectList(string.Empty, "Value", "Text"), "Select Category", htmlAttributes: new { @class = "form-control" })
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-12 col-xl-3">
+                                        <div class="select-wrap">
+                                            <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+                                            @Html.DropDownList("BrandId", new SelectList(string.Empty, "Value", "Text"), "Select Brands", htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-xl-2 ml-auto text-right">
+                                        <input type="submit" class="btn text-white btn-primary" value="Search">
+                                    </div>
+                                </div>
+                            }
+                            </div>
+                        
+                        </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="site-section" data-aos="fade">
+            <div class="container">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-md-7 text-center border-primary">
+                        <h2 class="font-weight-light text-primary">Most Viewed Vehicles</h2>
+                        <p class="color-black-opacity-5">A new car, truck, or van has never been easier. No dealer visit, no down payment, and delivered to you. Extensive research and easy vehicle selection help you get the best lease.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
+
+                        <div class="listing-item">
+                            <div class="listing-image">
+                                <img src="../../Content/images/c33.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
+                            </div>
+                            <div class="listing-item-content">
+                                <a class="px-3 mb-3 category" href="Home/VehicleByCategory/1015">Car</a>   
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
+
+                        <div class="listing-item">
+                            <div class="listing-image">
+                                <img src="../../Content/images/b44.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
+                            </div>
+                            <div class="listing-item-content">
+                                <a class="px-3 mb-3 category" href="Home/VehicleByCategory/1018">Bus</a>
+                            </div>   
+                                
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
+
+                        <div class="listing-item">
+                            <div class="listing-image">
+                                <img src="../../Content/images/t22.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
+                            </div>
+                            <div class="listing-item-content">
+                                
+                                <a class="px-3 mb-3 category" href="Home/VehicleByCategory/1019">Truck</a>
+                            </div>    
+                                
+                            
+                        </div>
+                    </div>
+                    
+            </div>
+        </div>
+
+        
+
+
+        <div class="site-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mb-5">
+                        <img src="../../Content/images/fleet-management.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-5 ml-auto">
+                        <h2 class="text-primary mb-3">Why Us</h2>
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="border p-3 rounded mb-2">
+                                    <a data-toggle="collapse" href="#collapse-1" role="button" aria-expanded="false" aria-controls="collapse-1" class="accordion-item h5 d-block mb-0">Why is leasing a vehicle better?</a>
+                                    <div class="collapse" id="collapse-1">
+                                        <div class="pt-2">
+                                            <p class="mb-0"> Leasing a vehicle often has a lower monthly payment compared to financing a vehicle with the same loan terms, 
+                                            since with a lease you're paying for the depreciation of the vehicle during those years rather than the whole vehicle cost.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border p-3 rounded mb-2">
+                                    <a data-toggle="collapse" href="#collapse-4" role="button" aria-expanded="false" aria-controls="collapse-4" class="accordion-item h5 d-block mb-0">Is this available in my country?</a>
+                                    <div class="collapse" id="collapse-4">
+                                        <div class="pt-2">
+                                            <p class="mb-0">This service is only available in India right now.Explorations will be done in near future.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border p-3 rounded mb-2">
+                                    <a data-toggle="collapse" href="#collapse-2" role="button" aria-expanded="false" aria-controls="collapse-2" class="accordion-item h5 d-block mb-0">Is it better to buy or lease a vehicle?</a>
+                                    <div class="collapse" id="collapse-2">
+                                        <div class="pt-2">
+                                            <p class="mb-0">The choice between buying and leasing has often been a tough call.
+                                            On one hand, buying involves higher monthly costs, but you own something in the end. 
+                                            On the other, a lease has lower monthly payments, but you get into a cycle where you never stop paying for a vehicle</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border p-3 rounded mb-2">
+                                    <a data-toggle="collapse" href="#collapse-3" role="button" aria-expanded="false" aria-controls="collapse-3" class="accordion-item h5 d-block mb-0">What leasing a vehicle means?</a>
+                                    <div class="collapse" id="collapse-3">
+                                        <div class="pt-2">
+                                            <p class="mb-0">
+                                                A vehicle lease lets you drive a new vehicle without paying a large sum of cash or taking out a loan. 
+                                                To lease a vehicle, you simply make a small down payment of a vehicle's value you'd pay to buy–followed by monthly payments for the term of the lease.
+                                                When the term expires, you return the car.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="site-section">
+            <div class="container">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-md-7 text-center border-primary">
+                        <h2 class="font-weight-light text-primary">How It Works</h2>
+                        <p class="color-black-opacity-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-4 mb-lg-0 col-lg-4">
+                        <div class="how-it-work-step">
+                            <div class="img-wrap">
+                                <img src="../../Content/images/1.jpg" alt="Free website template by Free-Template.co" class="img-fluid">
+                            </div>
+                            <span class="number">1</span>
+                            <h3>Find your dream vehicle</h3>
+                            <p>Are you looking for a commercial? Then feel free to choose from our wide selection.We have a range of makes and models available that all put quality first.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4 mb-lg-0 col-lg-4">
+                        <div class="how-it-work-step">
+                            <div class="img-wrap">
+                                <img src="../../Content/images/2.jpg" alt="Free website template by Free-Template.co" class="img-fluid">
+                            </div>
+                            <span class="number">2</span>
+                            <h3>Receive your proposal</h3>
+                            <p>Have you found your dream vehicle and created your own quote or requested a proposal from our collection.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4 mb-lg-0 col-lg-4">
+                        <div class="how-it-work-step">
+                            <div class="img-wrap">
+                                <img src="../../Content/images/3.jpg" alt="Free website template by Free-Template.co" class="img-fluid">
+                            </div>
+                            <span class="number">3</span>
+                            <h3>No Worries</h3>
+                            <p>We will get your vehicle ready to hit the road, handle all the administration, and make sure that registration and inspections are all taken care of so you can get to work quikly and safely.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="site-section bg-light">
+            <div class="container">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-md-7 text-center border-primary">
+                        <h2 class="font-weight-light text-primary">Satisfied Customers</h2>
+                    </div>
+                </div>
+                <div class="slide-one-item home-slider owl-carousel">
+                    <div>
+                        <div class="testimonial">
+                            <figure class="mb-4">
+                                <img src="../../Content/images/person_3_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3">
+                                <p>Willie Smith</p>
+                            </figure>
+                            <blockquote>
+                                <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="testimonial">
+                            <figure class="mb-4">
+                                <img src="../../Content/images/person_2_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3">
+                                <p>Robert Jones</p>
+                            </figure>
+                            <blockquote>
+                                <p>&ldquo;A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.&rdquo;</p>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="testimonial">
+                            <figure class="mb-4">
+                                <img src="../../Content/images/person_4_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3">
+                                <p>Peter Richmond</p>
+                            </figure>
+                            <blockquote>
+                                <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="testimonial">
+                            <figure class="mb-4">
+                                <img src="../../Content/images/person_5_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3">
+                                <p>Bruce Rogers</p>
+                            </figure>
+                            <blockquote>
+                                <p>&ldquo;The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.&rdquo;</p>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="py-5 bg-primary">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 mr-auto mb-4 mb-lg-0">
+                        <h2 class="mb-3 mt-0 text-white">Let's get started. Create your account</h2>
+                    </div>
+                    <div class="col-lg-4">
+                        <p class="mb-0"><a href="signup.html" class="btn btn-outline-white text-white btn-md px-5 font-weight-bold btn-md-block">Sign Up</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @{
+            Html.RenderPartial("_Footer");
+        }
+
+    </div>
+
+    <script src="../../Content/js/jquery-3.3.1.min.js"></script>
+    <script src="../../Content/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../../Content/js/jquery-ui.js"></script>
+    <script src="../../Content/js/popper.min.js"></script>
+    <script src="../../Content/js/bootstrap.min.js"></script>
+    <script src="../../Content/js/owl.carousel.min.js"></script>
+    <script src="../../Content/js/jquery.stellar.min.js"></script>
+    <script src="../../Content/js/jquery.countdown.min.js"></script>
+    <script src="../../Content/js/jquery.magnific-popup.min.js"></script>
+    <script src="../../Content/js/bootstrap-datepicker.min.js"></script>
+    <script src="../../Content/js/aos.js"></script>
+    <script src="../../Content/js/rangeslider.min.js"></script>
+
+    <script src="../../Content/js/typed.js"></script>
+    <script>
+        var typed = new Typed('.typed-words', {
+            strings: ["Vehicles", "Trucks", "Car", "Bus"],
+            typeSpeed: 80,
+            backSpeed: 80,
+            backDelay: 4000,
+            startDelay: 1000,
+            loop: true,
+            showCursor: true
+        });</script>
+    <script src="../../Content/js/main.js"></script>
+
+</body>
+</html>
+
+<script>
+    $(function () {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("GetCategory")',
+            datatype: "Json",
+
+            success: function (data) {
+                var s = '<option value="0">Select Category</option>';
+                for (var i = 0; i < data.length; i++) {
+                    s += '<option value="' + data[i].CategoryId + '">' + data[i].CategoryName + '</option>';
+                }
+                $("#CategoryId").html(s);
+                
+            }
+        });
+
+        $('#CategoryId').change(function () {
+
+            $('#BrandId').empty();
+
+            $.ajax({
+                type: "POST",
+                url:'@Url.Action("GetBrandByCategoryId")',
+                datatype: "Json",
+
+                data: { categoryId: $('#CategoryId').val() },
+                success: function (data) {
+                   
+                    $.each(data, function (index, value) {
+                        $('#BrandId').append('<option value="' + value.BrandId + '">' + value.BrandName + '</option>');
+                        });
+                    }
+                });
+        });
+
+      
+    });
+</script> 

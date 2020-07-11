@@ -1,0 +1,237 @@
+﻿@model IEnumerable<LeaseVehicle.Models.VMQuote>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Quotations</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/css/jquery-ui.css">
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/Content/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="~/Content/css/aos.css">
+    <link rel="stylesheet" href="~/Content/css/rangeslider.css">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <style>
+        .login-form {
+            margin-top: 5px;
+            background-color: #04b5b1
+        }
+
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+    </style>
+
+</head>
+<body>
+    <div class="site-wrap">
+        <div class="site-mobile-menu">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+
+        @{
+            Html.RenderPartial("_Header");
+        }
+    <div class="site-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-10 text-center border-primary">
+                    <h2 class="font-weight-light text-primary" style="padding-top:50px">Quote</h2>
+
+                </div>
+
+                <h6 style="margin-left:80%;text-decoration:underline">@Html.ActionLink("New Request Quote", "ListProduct", "Home") </h6>
+
+                <table class="table" style="margin-top:40px">
+
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Image")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Vehicle Name")
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().Duration)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().DownPayment)
+                        </th>
+                        <th>
+                            @Html.DisplayName("Total")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Status")
+                        </th>
+                        
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().Details)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.VImage)*@
+                                <img src="@Url.Content(item.VImage)" alt="Image" class="img-fluid" width="50px" height="50px">
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Duration)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DownPayment)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalAmount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                           
+                           
+                            <td>
+
+                                @if (item.Status == "Requested")
+                                {
+                                    <a href="QuoteDetail/@item.id" class="btn btn-primary">
+
+                                        <i class="fa fa-align-justify"></i>
+
+                                    </a>
+                                    <a href="DeleteQuote/@item.id" class="btn btn-primary">
+
+                                        <i class="fa fa-trash"></i>
+
+                                    </a>
+                                }
+                                else if (item.Status == "Vehicle Deliverd" || item.Status == "Order Completed")
+                                {
+                                    <a href="~/User/InvoiceDetails/Index/@item.id" class="btn btn-primary">
+
+                                        @*<i class="fa fa-align-justify"></i>*@
+                                        View Invoice
+
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="QuoteDetail/@item.id" class="btn btn-primary">
+                                        <i class="fa fa-align-justify"></i>
+                                    </a>
+                                }
+
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div name="demo" id="demo"></div>
+                    </div>
+
+                </div>
+ @*<script>
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+            var docid = document.getElementById("docstatus");
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal
+            btn.onclick = function() {
+                modal.style.display = "block";
+                $("#demo").html(docid);
+               
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+              if (event.target == modal) {
+                modal.style.display = "none";
+              }
+            }
+ </script>*@
+</body>
+</html>
+

@@ -1,0 +1,58 @@
+﻿@model LeaseVehicle.Models.Category
+
+@{
+    ViewBag.Title = "Add Category";
+}
+
+<h2>Add Category</h2>
+
+
+@using (Html.BeginForm("AddCategory","Category",FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryName, "Category Name", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+        </div>
+
+
+    </div>
+    <div class="form-group">
+        
+        <div class="col-md-10">
+            @*@Html.HiddenFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control", Value = @DateTime.Now.ToString()} })*@
+            <input type="hidden" id="CreatedDate" name="CreatedDate" value="@DateTime.Now.ToLocalTime()" />
+            <input type="hidden" id="IsActive" name="IsActive" value=true />
+            <input type="hidden" id="IsDelete" name="IsDelete" value=false />
+        </div>
+
+        @*<div>
+            <div class="alert alert-info"><b>Data Collected @@ @DateTime.Now.ToString()</b></div>
+        </div>*@
+
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("View Category List", "ViewCategory")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

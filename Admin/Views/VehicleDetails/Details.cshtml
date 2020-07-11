@@ -1,0 +1,194 @@
+﻿@model Admin.Models.VMVehicle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+ 
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrandId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrandId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ColorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ColorId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Euronum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Euronum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kilometers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kilometers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistrationYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoOfSeats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoOfSeats)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSold)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSold)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoldDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoldDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDelete)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDelete)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleImgId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleImgId)
+        </dd>
+
+        <dt>
+            Images
+        </dt>
+        @foreach (var item in Model.VehicleImages)
+        {
+
+            <img src="@Url.Content(item.VehicleImgName)" height="200px" width="200px" />
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

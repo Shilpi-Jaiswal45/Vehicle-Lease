@@ -1,0 +1,92 @@
+﻿@model LeaseVehicle.Models.PaytmResponse
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>paytmResponse</title>
+</head>
+<body>
+    <div align="center">
+        <table border="1" width="50%">
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.MID)</td>
+                <td>@Html.DisplayFor(model => model.MID)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.ORDERID)  </td>
+                <td>@Html.DisplayFor(model => model.ORDERID)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.TXNAMOUNT)  </td>
+                <td>@Html.DisplayFor(model => model.TXNAMOUNT)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.CURRENCY)  </td>
+                <td>@Html.DisplayFor(model => model.CURRENCY)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.TXNID)  </td>
+                <td>@Html.DisplayFor(model => model.TXNID)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.BANKTXNID)  </td>
+                <td>@Html.DisplayFor(model => model.BANKTXNID)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.STATUS)  </td>
+                <td>@Html.DisplayFor(model => model.STATUS)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.RESPCODE)  </td>
+                <td>@Html.DisplayFor(model => model.RESPCODE)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.RESPMSG)  </td>
+                <td>@Html.DisplayFor(model => model.RESPMSG)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.TXNDATE)  </td>
+                <td>@Html.DisplayFor(model => model.TXNDATE)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.GATEWAYNAME)  </td>
+                <td>@Html.DisplayFor(model => model.GATEWAYNAME)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.BANKNAME)  </td>
+                <td>@Html.DisplayFor(model => model.BANKNAME)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.PAYMENTMODE)  </td>
+                <td>@Html.DisplayFor(model => model.PAYMENTMODE)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.CHECKSUMHASH)  </td>
+                <td>@Html.DisplayFor(model => model.CHECKSUMHASH)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.CUST_ID)  </td>
+                <td>@Html.DisplayFor(model => model.CUST_ID)</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

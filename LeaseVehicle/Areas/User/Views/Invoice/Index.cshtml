@@ -1,0 +1,176 @@
+﻿
+@{
+    Layout = null;
+}
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Invoice</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/css/jquery-ui.css">
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/Content/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="~/Content/css/aos.css">
+    <link rel="stylesheet" href="~/Content/css/rangeslider.css">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style>
+        .invoice-title h2, .invoice-title h3 {
+            display: inline-block;
+        }
+
+        .table > tbody > tr > .no-line {
+            border-top: none;
+        }
+
+        .table > thead > tr > .no-line {
+            border-bottom: none;
+        }
+
+        .table > tbody > tr > .thick-line {
+            border-top: 2px solid;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-wrap">
+        <div class="site-mobile-menu">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+
+        @{
+            Html.RenderPartial("_Header");
+        }
+        <div class="site-section">
+            <div class="container">
+                <div class="row  mb-5">
+                    <div class="col-md-7 text-center">
+                        <div class="invoice-title">
+                            <strong>
+                                <h2 class="font-weight-light text-primary" style="padding-top:90px;padding-right:400px">Invoice Details</h2>
+                            </strong>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <address>
+                                    <strong>Billed To:</strong><br>
+                                    @ViewBag.Name<br>
+                                    @ViewBag.Address<br>
+                                   
+                                </address>
+                            </div>
+                            <div class="col-xs-6 ml-5">
+                                <address>
+                                <strong>Vehicle Details:</strong><br />
+                                Vehicle Name: @ViewBag.VName<br />
+                                Brand: @ViewBag.Brand<br />
+                                Category: @ViewBag.Category
+                                </address>
+                            </div>
+                        </div>
+                           <div class="row mt-5">
+                                    <div class="col-xs-6">
+                                        <address>
+                                            <strong>Payment Method:</strong><br>
+                                            <br>
+                                            @ViewBag.Email
+                                        </address>
+                                    </div>
+                                    <div class="col-xs-6 ml-5">
+                                        <address>
+                                            <strong>Order Date:</strong><br>
+                                            <br>
+                                        </address>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><strong>Order summary</strong></h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-condensed">
+                                                <thead>
+                                                    <tr>
+                                                        <td class="text-center"><strong>Duration</strong></td>
+                                                        <td class="text-center"><strong>Date</strong></td>
+                                                        <td class="text-center"><strong>Price</strong></td>
+                                                        <td class="text-center"><strong>Status</strong></td>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                                    <tr>
+                                                        <td class="text-center">12</td>
+                                                        <td class="text-center">$10.99</td>
+                                                        <td class="text-center">1</td>
+                                                        <td class="text-center">$10.99</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table class="balance float-right text-right">
+                                                <tr>
+                                                    <th><span contenteditable>Total</span></th>
+                                                    <td><span data-prefix>Rs.</span><span>@ViewBag.Price</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th><span contenteditable>Amount Paid</span></th>
+                                                    <td><span data-prefix>Rs.</span><span contenteditable>@ViewBag.DownPayment</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th><span contenteditable>Balance Due</span></th>
+                                                    <td><span data-prefix>Rs.</span><span>600.00</span></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    </div>
+    <script src="../../Content/js/jquery-3.3.1.min.js"></script>
+    <script src="../../Content/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../../Content/js/jquery-ui.js"></script>
+    <script src="../../Content/js/popper.min.js"></script>
+    <script src="../../Content/js/bootstrap.min.js"></script>
+    <script src="../../Content/js/owl.carousel.min.js"></script>
+    <script src="../../Content/js/jquery.stellar.min.js"></script>
+    <script src="../../Content/js/jquery.countdown.min.js"></script>
+    <script src="../../Content/js/jquery.magnific-popup.min.js"></script>
+    <script src="../../Content/js/bootstrap-datepicker.min.js"></script>
+    <script src="../../Content/js/aos.js"></script>
+    <script src="../../Content/js/rangeslider.min.js"></script>
+
+    <script src="../../Content/js/typed.js"></script>
+
+    <script src="../../Content/js/main.js"></script>
+</body>
+</html>
+
